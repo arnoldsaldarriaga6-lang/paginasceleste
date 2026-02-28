@@ -4,27 +4,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     const fakePoster = document.getElementById('fake-poster');
     const liveIframe = document.getElementById('live-iframe');
-    const videoContainer = document.getElementById('video-container');
 
     if(fakePoster && liveIframe) { 
         fakePoster.addEventListener('click', function() {
             // Ocultamos la portada falsa
             fakePoster.style.display = 'none';
-            // Cargamos el enlace de la transmisión
+            // Obligamos al iframe a cargar el enlace y mostrarse EN el index
             liveIframe.src = "https://la14hd.com/vivo/canales.php?stream=liga1max";
             liveIframe.style.display = 'block';
-
-            // TRUCO: Botón de emergencia por si la página bloquea el iframe
-            if(!document.getElementById('btn-emergencia')) {
-                const btn = document.createElement('a');
-                btn.id = 'btn-emergencia';
-                btn.href = "https://la14hd.com/vivo/canales.php?stream=liga1max";
-                btn.target = "_blank"; // Abre en nueva pestaña
-                btn.innerHTML = "<i class='fa-solid fa-arrow-up-right-from-square'></i> ¿La transmisión se ve negra? Haz clic aquí para ver el partido";
-                btn.style.cssText = "display: block; text-align: center; background: #ef4444; color: white; padding: 12px; border-radius: 0 0 15px 15px; text-decoration: none; font-weight: 800; font-family: 'Oswald', sans-serif; margin-top: -5px; position: relative; z-index: 5;";
-                
-                videoContainer.after(btn);
-            }
         });
     }
 });
