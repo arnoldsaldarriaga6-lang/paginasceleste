@@ -83,101 +83,12 @@ function copyText(text, method) {
 }
 
 function showToast(message) {
-    const toast = document.getElementById('premiumToast') || document.getElementById('notification');
+    const toast = document.getElementById('premiumToast');
     if(toast) {
         const msgEl = document.getElementById('toastMessage');
         if(msgEl) msgEl.innerText = message;
-        else toast.innerText = message; 
         
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 3000);
     }
 }
-
-// ==========================================
-// 4. LÓGICA DEL CHATBOT IA (VIA NETLIFY)
-// ==========================================
-document.addEventListener('DOMContentLoaded', () => {
-    const chatBubble = document.getElementById('chat-bubble');
-    const chatWindow = document.getElementById('chat-window');
-    const chatClose = document.getElementById('chat-close');
-    const chatInput = document.getElementById('chat-input');
-    const chatSend = document.getElementById('chat-send');
-    const chatMessages = document.getElementById('chat-messages');
-
-    let historialChat = [];
-
-    if(chatBubble && chatWindow && chatClose) {
-        chatBubble.addEventListener('click', () => {
-            chatWindow.style.display = 'flex';
-            chatBubble.style.display = 'none';
-        });
-        chatClose.addEventListener('click', () => {
-            chatWindow.style.display = 'none';
-            chatBubble.style.display = 'flex';
-        });
-    }
-
-    if(chatSend && chatInput) {
-        chatSend.addEventListener('click', enviarMensaje);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') enviarMensaje();
-        });
-    }
-
-    async function enviarMensaje() {
-        const textoUsuario = chatInput.value.trim();
-        if (!textoUsuario) return;
-
-        agregarMensaje(textoUsuario, 'msg-user');
-        chatInput.value = '';
-
-        const escribiendoId = agregarMensaje("Pensando...", 'msg-bot', true);
-
-        try {
-            // Llamamos a la función protegida en Netlify
-            const response = await fetch('/.netlify/functions/chat', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ prompt: textoUsuario, historial: historialChat })
-            });
-
-            const data = await response.json();
-            
-            const msgPensando = document.getElementById(escribiendoId);
-            if(msgPensando) msgPensando.remove();
-
-            if (!response.ok) throw new Error(data.error || "Error del servidor");
-
-            agregarMensaje(data.respuesta, 'msg-bot');
-            
-            // Actualizar historial local
-            historialChat.push({ role: "user", parts: [{ text: textoUsuario }] });
-            historialChat.push({ role: "model", parts: [{ text: data.respuesta }] });
-
-        } catch (error) {
-            const msgPensando = document.getElementById(escribiendoId);
-            if(msgPensando) msgPensando.remove();
-            
-            agregarMensaje("Error de conexión con el servidor. Intenta de nuevo. 🍺", 'msg-bot');
-            console.error("Error Fetch:", error);
-        }
-    }
-
-    function agregarMensaje(texto, clase, esTemporal = false) {
-        if(!chatMessages) return;
-        const div = document.createElement('div');
-        div.className = `msg ${clase}`;
-        div.innerText = texto;
-        
-        const idTemporal = 'msg-' + Date.now();
-        if (esTemporal) {
-            div.id = idTemporal;
-            div.classList.add('escribiendo');
-        }
-
-        chatMessages.appendChild(div);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-        return idTemporal;
-    }
-});
