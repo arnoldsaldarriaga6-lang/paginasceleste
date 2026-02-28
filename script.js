@@ -1,25 +1,42 @@
 // ==========================================
-// 1. LÓGICA DE LA PORTADA FALSA (REPRODUCTOR)
+// 1. LÓGICA DE LA PORTADA FALSA Y REPRODUCTOR
 // ==========================================
 document.addEventListener('DOMContentLoaded', function() {
     const fakePoster = document.getElementById('fake-poster');
     const liveIframe = document.getElementById('live-iframe');
+    const videoContainer = document.getElementById('video-container');
 
-    if(fakePoster && liveIframe && !window.location.search) { 
+    if(fakePoster && liveIframe) { 
         fakePoster.addEventListener('click', function() {
+            // Ocultamos la portada falsa
             fakePoster.style.display = 'none';
+            // Cargamos el enlace de la transmisión
             liveIframe.src = "https://la14hd.com/vivo/canales.php?stream=liga1max";
             liveIframe.style.display = 'block';
+
+            // TRUCO: Botón de emergencia por si la página bloquea el iframe
+            if(!document.getElementById('btn-emergencia')) {
+                const btn = document.createElement('a');
+                btn.id = 'btn-emergencia';
+                btn.href = "https://la14hd.com/vivo/canales.php?stream=liga1max";
+                btn.target = "_blank"; // Abre en nueva pestaña
+                btn.innerHTML = "<i class='fa-solid fa-arrow-up-right-from-square'></i> ¿La transmisión se ve negra? Haz clic aquí para ver el partido";
+                btn.style.cssText = "display: block; text-align: center; background: #ef4444; color: white; padding: 12px; border-radius: 0 0 15px 15px; text-decoration: none; font-weight: 800; font-family: 'Oswald', sans-serif; margin-top: -5px; position: relative; z-index: 5;";
+                
+                videoContainer.after(btn);
+            }
         });
     }
 });
 
 // ==========================================
-// 2. LÓGICA DEL CONTADOR (CRISTAL)
+// 2. LÓGICA DEL CONTADOR (CRISTAL VS CARABOBO)
 // ==========================================
 const calendarioPartidos = [
-    { rival: "S. Huancayo", inicio: new Date("February 28, 2026 15:00:00").getTime(), fin: new Date("February 28, 2026 17:00:00").getTime() },
-    { rival: "A. Atletico", inicio: new Date("March 02, 2026 15:30:00").getTime(), fin: new Date("March 02, 2026 17:30:00").getTime() }
+    // El próximo guerrero: Carabobo (4 de Marzo)
+    { rival: "Carabobo", inicio: new Date("March 04, 2026 17:00:00").getTime(), fin: new Date("March 04, 2026 19:00:00").getTime() },
+    // Siguiente fecha: Alianza Atlético (7 de Marzo)
+    { rival: "A. Atletico", inicio: new Date("March 07, 2026 16:30:00").getTime(), fin: new Date("March 07, 2026 18:30:00").getTime() }
 ];
 
 function actualizarContador() {
@@ -44,6 +61,7 @@ function actualizarContador() {
         titulo.innerText = `¡LA MÁQUINA CELESTE ESTÁ JUGANDO!`;
         contadorDiv.innerHTML = `<span style="color: #ef4444; text-shadow: 0 0 15px rgba(239, 68, 68, 0.8);">🔴 EN VIVO VS ${partidoActivo.rival}</span>`;
     } else {
+        // Muestra el próximo guerrero
         titulo.innerText = `Próximo Guerrero: Cristal vs ${partidoActivo.rival}`;
         const desc = partidoActivo.inicio - ahora;
         const d = Math.floor(desc / (1000 * 60 * 60 * 24));
