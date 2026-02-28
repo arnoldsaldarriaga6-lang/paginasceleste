@@ -7,9 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if(fakePoster && liveIframe) { 
         fakePoster.addEventListener('click', function() {
-            // Ocultamos la portada falsa
             fakePoster.style.display = 'none';
-            // Obligamos al iframe a cargar el enlace y mostrarse EN el index
             liveIframe.src = "https://la14hd.com/vivo/canales.php?stream=liga1max";
             liveIframe.style.display = 'block';
         });
@@ -20,9 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // 2. LÓGICA DEL CONTADOR (CRISTAL VS CARABOBO)
 // ==========================================
 const calendarioPartidos = [
-    // El próximo guerrero: Carabobo (4 de Marzo)
     { rival: "Carabobo", inicio: new Date("March 04, 2026 17:00:00").getTime(), fin: new Date("March 04, 2026 19:00:00").getTime() },
-    // Siguiente fecha: Alianza Atlético (7 de Marzo)
     { rival: "A. Atletico", inicio: new Date("March 07, 2026 16:30:00").getTime(), fin: new Date("March 07, 2026 18:30:00").getTime() }
 ];
 
@@ -48,7 +44,6 @@ function actualizarContador() {
         titulo.innerText = `¡LA MÁQUINA CELESTE ESTÁ JUGANDO!`;
         contadorDiv.innerHTML = `<span style="color: #ef4444; text-shadow: 0 0 15px rgba(239, 68, 68, 0.8);">🔴 EN VIVO VS ${partidoActivo.rival}</span>`;
     } else {
-        // Muestra el próximo guerrero
         titulo.innerText = `Próximo Guerrero: Cristal vs ${partidoActivo.rival}`;
         const desc = partidoActivo.inicio - ahora;
         const d = Math.floor(desc / (1000 * 60 * 60 * 24));
@@ -96,4 +91,26 @@ function showToast(message) {
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 3000);
     }
+}
+
+// ==========================================
+// 4. LÓGICA DEL POPUP DE JUGADORES (MODAL)
+// ==========================================
+function abrirModal(nombre, numero, posicion, descripcion, imagenUrl) {
+    const modal = document.getElementById("playerModal");
+    
+    // Asignamos la información al HTML del Modal
+    document.getElementById("modalNombre").innerText = nombre;
+    document.getElementById("modalNum").innerText = numero;
+    document.getElementById("modalPos").innerText = posicion;
+    document.getElementById("modalDesc").innerText = descripcion;
+    document.getElementById("modalImg").src = imagenUrl;
+    
+    // Mostramos el Modal
+    modal.style.display = "flex";
+}
+
+function cerrarModal() {
+    const modal = document.getElementById("playerModal");
+    modal.style.display = "none";
 }
