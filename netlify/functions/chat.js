@@ -1,6 +1,6 @@
-exports.handler = async (event) => {
+exports.handler = async (event)=>{
 
-if(event.httpMethod !== "POST"){
+if(event.httpMethod!=="POST"){
 
 return{
 statusCode:405,
@@ -13,9 +13,26 @@ try{
 
 const apiKey = process.env.OPENAI_API_KEY;
 
-const { mensaje } = JSON.parse(event.body);
+if(!apiKey){
 
-const respuesta = await fetch(
+return{
+
+statusCode:200,
+
+body:JSON.stringify({
+
+respuesta:"⚠️ Falta OPENAI_API_KEY"
+
+})
+
+};
+
+}
+
+const { mensaje } = JSON.parse(event.body||"{}");
+
+
+const response = await fetch(
 
 "https://api.openai.com/v1/chat/completions",
 
@@ -41,28 +58,9 @@ messages:[
 
 role:"system",
 
-content:`
-
-Eres el asistente virtual oficial de ElCerveceroTV,
-una plataforma gratuita creada por Arnold.
-
-Tono amigable, energético,
-fanático de Sporting Cristal.
-
-Usa frases:
-
-¡Fuerza Cristal!
-Raza Celeste
-¡Salud Cervecero!
-
-INFORMACION:
-
-- Los partidos están en Agenda.
-- Recomienda Brave o uBlock Origin si hay anuncios.
-- Donaciones Yape/Agora 930169320 Arnold.
-- Si no sabes algo di que eres bot en entrenamiento.
-
-`
+content:`Eres el asistente oficial ElCerveceroTV creado por Arnold.
+Fanático Sporting Cristal.
+Si hay anuncios recomienda Brave o uBlock.`
 
 },
 
@@ -82,7 +80,21 @@ content:mensaje
 
 );
 
-const data = await respuesta.json();
+
+// 🔥 leer primero texto
+const texto = await response.text();
+
+console.log("OPENAI:",texto);
+
+
+// convertir json seguro
+let data;
+
+try{
+
+data = JSON.parse(texto);
+
+}catch{
 
 return{
 
@@ -90,15 +102,56 @@ statusCode:200,
 
 body:JSON.stringify({
 
-respuesta:
+respuesta:"⚠️ Error respuesta IA."
 
-data.choices[0].message.content
+})
+
+};
+
+}
+
+
+// 🔥 SI OPENAI RESPONDE ERROR
+if(data.error){
+
+return{
+
+statusCode:200,
+
+body:JSON.stringify({
+
+respuesta:"⚠️ OpenAI dice: "+data.error.message
+
+})
+
+};
+
+}
+
+
+// 🔥 YA NO ROMPE
+const respuesta =
+
+data?.choices?.[0]?.message?.content
+
+|| "🍺 Estoy pensando todavía... intenta otra vez.";
+
+
+return{
+
+statusCode:200,
+
+body:JSON.stringify({
+
+respuesta
 
 })
 
 };
 
 }catch(error){
+
+console.log("SERVER ERROR",error);
 
 return{
 
