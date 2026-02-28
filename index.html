@@ -36,7 +36,7 @@
                     <img src="https://claroperupoc.vtexassets.com/arquivos/ids/1667923/liga-1-max.png" alt="L1 MAX">
                     <div class="play-button"><i class="fa-solid fa-play"></i></div>
                 </div>
-                <iframe id="live-iframe" src="" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" sandbox="allow-same-origin allow-scripts allow-forms" referrerpolicy="no-referrer" allowfullscreen scrolling="no" style="display: none; width: 100%; height: 100%; border: none; background: #000;"></iframe>
+                <iframe id="live-iframe" src="" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen scrolling="no" style="display: none; width: 100%; height: 100%; border: none; background: #000;"></iframe>
             </div>
 
             <div style="background: rgba(255, 85, 0, 0.1); border: 1px solid #ff5500; padding: 15px; border-radius: 10px; margin-top: 15px; display: flex; gap: 15px; align-items: center;">
@@ -44,19 +44,6 @@
                 <div>
                     <h4 style="margin: 0; color: #ff5500; font-family: 'Oswald', sans-serif; font-size: 1.2rem; text-transform: uppercase;">RECOMENDACIÓN</h4>
                     <p style="margin: 5px 0 0 0; font-size: 0.85rem; color: #ccc;">Usa el navegador <b>Brave</b> o instala la extensión <b>uBlock Origin</b> para bloquear los anuncios externos automáticamente.</p>
-                </div>
-            </div>
-
-            <div class="action-bar" style="margin-top: 20px;">
-                <div class="viewers-count">
-                    <div class="live-dot-celeste"></div>
-                    <span style="color: var(--sc-white); margin-left: 5px;">Transmisión de la Raza Celeste</span>
-                </div>
-                <div class="share-section">
-                    <span>Compartir:</span>
-                    <button class="share-btn btn-wa" onclick="window.open('https://api.whatsapp.com/send?text=¡Alienta a Cristal en vivo por ElCerveceroTV!', '_blank')"><i class="fa-brands fa-whatsapp"></i></button>
-                    <button class="share-btn btn-fb" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=URL_DE_TU_WEB', '_blank')"><i class="fa-brands fa-facebook-f"></i></button>
-                    <button class="share-btn btn-tw" onclick="window.open('https://twitter.com/intent/tweet?text=¡Viendo a la Máquina Celeste por ElCerveceroTV!', '_blank')"><i class="fa-brands fa-x-twitter"></i></button>
                 </div>
             </div>
         </section>
@@ -110,25 +97,66 @@
                             <div class="match-info"><div class="league">Liga 1 Te Apuesto</div><div class="teams">S. Cristal vs. A. Atletico</div></div>
                         </div>
                     </div>
-                    
-                    <a href="agenda.html" class="action-btn" style="margin-top: 15px; width: 100%; justify-content: center; display: flex;">
-                        <i class="fa-solid fa-satellite-dish" style="margin-right: 8px;"></i> Ver Agenda de Canales
+
+                    <a href="agenda.html" class="action-btn" style="margin-top: 20px; width: 100%; justify-content: center; display: flex; font-size: 1rem; padding: 15px;">
+                        <i class="fa-solid fa-satellite-dish" style="margin-right: 8px;"></i> Ver Agenda y Transmisiones
                     </a>
                 </div>
             </div>
         </section>
 
-        <section class="plantilla-wide-section" style="margin-bottom: 60px;">
-            <div class="glass-panel plantilla-banner" style="padding: 20px 30px;">
-                <img src="cristal.jpg" alt="La Máquina Celeste" class="plantilla-banner-img" onerror="this.src='mi_logo.png'">
-                <div class="plantilla-banner-content">
-                    <h3 class="panel-header" style="border: none; margin-bottom: 5px; font-size: 1.8rem; padding-bottom: 0;"><i class="fa-solid fa-shield"></i> PLANTILLA 2026</h3>
-                    <p class="donation-desc" style="text-align: left; margin-bottom: 15px; font-size: 0.95rem;">La Máquina Celeste. Conoce a los jugadores oficiales, goleadores y al comando técnico de la temporada.</p>
-                    <a href="plantilla.html" class="action-btn" style="padding: 10px 20px; font-size: 0.9rem;">
-                        Ver Plantilla Completa <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 8px;"></i>
-                    </a>
+        <section class="plantilla-section" style="margin-top: 60px; margin-bottom: 60px;">
+            <div class="plantilla-header">
+                <h2>Plantilla 2026</h2>
+                <p style="color: var(--text-dim);">Conoce a los guerreros de la Raza Celeste. Desliza para ver su posición y haz clic para más info.</p>
+            </div>
+
+            <div class="entrenador-wrapper">
+                <div class="entrenador-card">
+                    <img src="https://elcomercio.pe/resizer/HqQh1T09Y_M4T_D8M4hN_HqQh1T=/1200x900/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/HqQh1T09Y_M4T_D8M4hN_HqQh1T.jpg" alt="DT" class="entrenador-img" onerror="this.src='mi_logo.png'">
+                    <div class="entrenador-info">
+                        <h3>Guillermo Farré</h3>
+                        <p>Director Técnico</p>
+                        <span class="badge-dt">DT</span>
+                    </div>
                 </div>
             </div>
+
+            <div id="plantel">
+                
+                <div class="flip" onclick="abrirModal('Martín Cauteruccio', '9', 'Delantero', 'Máximo goleador del equipo. Letal en el área y un definidor nato.', 'https://img.planeta.pe/wp-content/uploads/2024/02/05175955/cauteruccio.jpg')">
+                    <div class="flip-inner">
+                        <div class="frente">
+                            <img src="https://img.planeta.pe/wp-content/uploads/2024/02/05175955/cauteruccio.jpg" alt="Jugador" onerror="this.src='mi_logo.png'">
+                            <div class="info-frente">
+                                <h3>Martín Cauteruccio</h3>
+                            </div>
+                        </div>
+                        <div class="atras">
+                            <h2 style="font-size: 3.5rem; margin-top: 20px; color: var(--sc-accent-gold); font-family: 'Oswald', sans-serif;">9</h2>
+                            <p style="font-weight: bold; font-size: 1.2rem;">Delantero</p>
+                            <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 10px;"><i class="fa-solid fa-hand-pointer"></i> Clic para info</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip" onclick="abrirModal('Yoshimar Yotún', '19', 'Mediocampista', 'Capitán indiscutible. La visión de juego y el corazón del mediocampo celeste.', 'https://depor.com/resizer/P86q_51268m281_1_258832_2/1200x900/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/P86q_51268m281_1_258832_2.jpg')">
+                    <div class="flip-inner">
+                        <div class="frente">
+                            <img src="https://depor.com/resizer/P86q_51268m281_1_258832_2/1200x900/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/P86q_51268m281_1_258832_2.jpg" alt="Jugador" onerror="this.src='mi_logo.png'">
+                            <div class="info-frente">
+                                <h3>Yoshimar Yotún</h3>
+                            </div>
+                        </div>
+                        <div class="atras">
+                            <h2 style="font-size: 3.5rem; margin-top: 20px; color: var(--sc-accent-gold); font-family: 'Oswald', sans-serif;">19</h2>
+                            <p style="font-weight: bold; font-size: 1.2rem;">Mediocampista</p>
+                            <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 10px;"><i class="fa-solid fa-hand-pointer"></i> Clic para info</p>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
         </section>
 
     </main>
@@ -139,6 +167,23 @@
             <p>Hecho con pasión por y para la Raza Celeste.</p>
         </div>
     </footer>
+
+    <div id="playerModal" class="popup" onclick="if(event.target === this) cerrarModal()">
+        <div class="popupContenido">
+            <div class="popup-header">
+                <img id="modalImg" src="" alt="Jugador" onerror="this.src='mi_logo.png'">
+                <div>
+                    <h2 id="modalNombre">Nombre Jugador</h2>
+                    <div class="num">#<span id="modalNum">00</span></div>
+                </div>
+            </div>
+            <div class="player-details-grid">
+                <div class="detail-item"><span>Posición</span><strong id="modalPos">Posición</strong></div>
+                <div class="detail-item" style="grid-column: span 2;"><span>Descripción</span><strong id="modalDesc">Descripción del jugador</strong></div>
+            </div>
+            <button onclick="cerrarModal()" class="action-btn" style="width: 100%; justify-content: center; margin-top: 10px;">Cerrar Ficha</button>
+        </div>
+    </div>
 
     <div id="premiumToast" class="toast-premium"><i id="toastIcon" class="fa-solid fa-circle-check toast-icon-success"></i><span id="toastMessage"></span></div>
 
