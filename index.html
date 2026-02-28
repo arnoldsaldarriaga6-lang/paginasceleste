@@ -36,7 +36,7 @@
                     <img src="https://claroperupoc.vtexassets.com/arquivos/ids/1667923/liga-1-max.png" alt="L1 MAX">
                     <div class="play-button"><i class="fa-solid fa-play"></i></div>
                 </div>
-                <iframe id="live-iframe" src="" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" allowfullscreen scrolling="no" style="display: none; width: 100%; height: 100%; border: none; background: #000;"></iframe>
+                <iframe id="live-iframe" src="" allow="autoplay; fullscreen; encrypted-media; picture-in-picture" sandbox="allow-same-origin allow-scripts allow-forms" referrerpolicy="no-referrer" allowfullscreen scrolling="no" style="display: none; width: 100%; height: 100%; border: none; background: #000;"></iframe>
             </div>
 
             <div style="background: rgba(255, 85, 0, 0.1); border: 1px solid #ff5500; padding: 15px; border-radius: 10px; margin-top: 15px; display: flex; gap: 15px; align-items: center;">
@@ -110,61 +110,19 @@
                             <div class="match-info"><div class="league">Liga 1 Te Apuesto</div><div class="teams">S. Cristal vs. A. Atletico</div></div>
                         </div>
                     </div>
-                    <a href="agenda.html" class="action-btn" style="margin-top: 15px; width: 100%; justify-content: center; display: flex;">
-                        <i class="fa-solid fa-satellite-dish" style="margin-right: 8px;"></i> Ver Agenda de Canales
-                    </a>
                 </div>
             </div>
         </section>
 
-        <section class="plantilla-section" style="margin-top: 60px; margin-bottom: 60px;">
-            <div class="plantilla-header">
-                <h2>Plantilla 2026</h2>
-                <p style="color: var(--text-dim);">Conoce a los guerreros de la Raza Celeste</p>
-            </div>
-
-            <div class="entrenador-wrapper">
-                <div class="entrenador-card">
-                    <img src="https://elcomercio.pe/resizer/HqQh1T09Y_M4T_D8M4hN_HqQh1T=/1200x900/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/HqQh1T09Y_M4T_D8M4hN_HqQh1T.jpg" alt="DT" class="entrenador-img" onerror="this.src='mi_logo.png'">
-                    <div class="entrenador-info">
-                        <h3>Guillermo Farré</h3>
-                        <p>Director Técnico</p>
-                        <span class="badge-dt">DT</span>
-                    </div>
-                </div>
-            </div>
-
-            <div id="plantel">
-                <div class="flip">
-                    <div class="flip-inner">
-                        <div class="frente">
-                            <img src="https://img.planeta.pe/wp-content/uploads/2024/02/05175955/cauteruccio.jpg" alt="Jugador" onerror="this.src='mi_logo.png'">
-                            <div class="info-frente">
-                                <h3>Martín Cauteruccio</h3>
-                            </div>
-                        </div>
-                        <div class="atras">
-                            <h2 style="font-size: 3.5rem; margin-top: 20px; color: var(--sc-accent-gold); font-family: 'Oswald', sans-serif;">9</h2>
-                            <p style="font-weight: bold; font-size: 1.2rem;">Delantero</p>
-                            <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 10px;">Goleador</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="flip">
-                    <div class="flip-inner">
-                        <div class="frente">
-                            <img src="https://depor.com/resizer/P86q_51268m281_1_258832_2/1200x900/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/P86q_51268m281_1_258832_2.jpg" alt="Jugador" onerror="this.src='mi_logo.png'">
-                            <div class="info-frente">
-                                <h3>Yoshimar Yotún</h3>
-                            </div>
-                        </div>
-                        <div class="atras">
-                            <h2 style="font-size: 3.5rem; margin-top: 20px; color: var(--sc-accent-gold); font-family: 'Oswald', sans-serif;">19</h2>
-                            <p style="font-weight: bold; font-size: 1.2rem;">Mediocampista</p>
-                            <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 10px;">Capitán</p>
-                        </div>
-                    </div>
+        <section class="plantilla-wide-section" style="margin-bottom: 60px;">
+            <div class="glass-panel plantilla-banner">
+                <img src="cristal.jpg" alt="La Máquina Celeste" class="plantilla-banner-img" onerror="this.src='mi_logo.png'">
+                <div class="plantilla-banner-content">
+                    <h3 class="panel-header" style="border: none; margin-bottom: 5px; font-size: 2.2rem;"><i class="fa-solid fa-shield"></i> PLANTILLA 2026</h3>
+                    <p class="donation-desc" style="text-align: left; margin-bottom: 20px; font-size: 1rem;">La Máquina Celeste. Conoce a los jugadores oficiales, goleadores y al comando técnico de la temporada.</p>
+                    <a href="plantilla.html" class="action-btn">
+                        Ver Plantilla Completa <i class="fa-solid fa-arrow-up-right-from-square" style="margin-left: 8px;"></i>
+                    </a>
                 </div>
             </div>
         </section>
